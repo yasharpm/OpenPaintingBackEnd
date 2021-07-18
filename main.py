@@ -1,8 +1,8 @@
+import eventlet
 import socketio
 import ast
-from gevent import pywsgi
 
-sio = socketio.Server(async_mode='gevent')
+sio = socketio.Server()
 application = app = socketio.WSGIApp(sio, static_files={
     '/': {'content_type': 'text/html', 'filename': 'index.html'}
 })
@@ -34,4 +34,4 @@ def disconnect(sid):
 
 
 if __name__ == '__main__':
-    pywsgi.WSGIServer(('', 44127), app).serve_forever()
+    eventlet.wsgi.server(eventlet.listen(('', 44127)), app)
