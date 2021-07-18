@@ -3,7 +3,7 @@ import socketio
 import ast
 
 sio = socketio.Server()
-app = socketio.WSGIApp(sio, static_files={
+application = app = socketio.WSGIApp(sio, static_files={
     '/': {'content_type': 'text/html', 'filename': 'index.html'}
 })
 
